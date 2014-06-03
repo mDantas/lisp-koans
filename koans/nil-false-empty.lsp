@@ -14,42 +14,42 @@
 
 (define-test test-t-and-nil-are-opposites
     "not is a function which returns the boolean opposite of its argument"
-   (true-or-false? ___ (not nil))
-   (true-or-false? ___ (not t)))
+   (assert-true (not nil))
+   (assert-false (not t)))
 
 
 (define-test test-nil-and-empty-list-are-the-same-thing
-  (true-or-false? ___ ())
-  (true-or-false? ___ (not ())))
+  (assert-false ())
+  (assert-true (not ())))
 
 
 (define-test test-lots-of-things-are-true
    " every value, other than nil, is boolean true"
-   (true-or-false? ___ 5)
-   (true-or-false? ___ (not 5))
-   (true-or-false? ___ "A String")
+   (assert-true 5)
+   (assert-false (not 5))
+   (assert-true "A String")
    "only nil is nil.  Everything else is effectively true."
    "the empty string"
-   (true-or-false? ___ "")
+   (assert-true "")
    "a list containing a nil"
-   (true-or-false? ___ '(nil))
+   (assert-true '(nil))
    "an array with no elements"
-   (true-or-false? ___ (make-array '(0)))
+   (assert-true (make-array '(0)))
    "the number zero"
-   (true-or-false? ___ 0))
+   (assert-true 0))
 
 
 (define-test test-and
    "and can take multiple arguments"
-   (true-or-false? ___ (and t t t t t))
-   (true-or-false? ___ (and t t nil t t))
+   (assert-true (and t t t t t))
+   (assert-false (and t t nil t t))
    "if no nils, and returns the last value"
-   (assert-equal ___ (and t t t t t 5)))
+   (assert-equal 5 (and t t t t t 5)))
 
 
 (define-test test-or
    "or can also take multiple arguments"
-   (true-or-false? ____  (or nil nil nil t nil))
+   (assert-true (or nil nil nil t nil))
    "or returns the first non nil value, or nil if there are none."
-   (assert-equal ____ (or nil nil nil))
-   (assert-equal ____ (or 1 2 3 4 5)))
+   (assert-equal nil (or nil nil nil))
+   (assert-equal 1 (or 1 2 3 4 5)))
