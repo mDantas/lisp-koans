@@ -29,17 +29,25 @@
             (setf (aref chess-board x y) :white)
             )))
     (assert-true (typep chess-board 'array))
-    (assert-equal (aref chess-board 0 0) ___)
-    (assert-equal (aref chess-board 2 3) ___)
+    (assert-equal (aref chess-board 0 0) :black )
+    (assert-equal (aref chess-board 2 3) :white )
     "array-rank returns the number of dimensions of the array"
-    (assert-equal ___ (array-rank chess-board))
+    (assert-equal 2 (array-rank chess-board))
     "array-dimensions returns a list of the cardinality of the array dims"
-    (assert-equal ___ (array-dimensions chess-board))
-    (assert-equal ___ (array-total-size chess-board))))
+    (assert-equal '(8 8) (array-dimensions chess-board))
+    (assert-equal 64 (array-total-size chess-board))))
 
 (define-test test-make-your-own-array
     "make your own array that meets the specifications below."
   (let ((color-cube nil))
+    (setf color-cube (make-array '(3 3 3)))
+    (dotimes (x 3)
+      (dotimes (y 3)
+        (dotimes (z 3)
+          (if (< x z)
+            (setf (aref color-cube x y z) :red)
+            (setf (aref color-cube x y z) :white)
+	    ))))
     "you may need to modify your array after you make it"
     (if (typep color-cube '(simple-array T (3 3 3)))
         (progn
