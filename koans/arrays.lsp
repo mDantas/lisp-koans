@@ -71,8 +71,8 @@
 (define-test test-make-array-from-list
   (let ((x))
     (setf x (make-array '(4) :initial-contents '(:one :two :three :four)))
-    (assert-equal (array-dimensions x) ____)
-    (assert-equal ____ (aref x 0))))
+    (assert-equal (array-dimensions x) '(4) )
+    (assert-equal :one (aref x 0))))
 
 
 (define-test test-row-major-index
@@ -82,5 +82,5 @@
     (setf my-array (make-array '(2 2 2 2)))
     (dotimes (i (* 2 2 2 2))
       (setf (row-major-aref my-array i) i))
-    (assert-equal (aref my-array 0 0 0 0) ____)
-    (assert-equal (aref my-array 1 1 1 1) ____)))
+    (assert-equal (aref my-array 0 0 0 0) 0)
+    (assert-equal (aref my-array 1 1 1 1) 15)))
