@@ -20,7 +20,7 @@
 
 (define-test test-call-a-function
     "DEFUN defines global functions"
-  (assert-equal ___ (some-named-function 7 11)))
+  (assert-equal 18 (some-named-function 7 11)))
 
 
 (define-test test-shadow-a-function
